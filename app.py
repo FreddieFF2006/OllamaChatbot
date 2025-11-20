@@ -17,7 +17,9 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
-PPT_SERVICE_URL = "http://localhost:5001"
+
+# PPT Extraction Service configuration (for Docker: set to http://pptx2description:5001)
+PPT_SERVICE_URL = os.environ.get('PPT_SERVICE_URL', 'http://localhost:5001')
 
 # Ollama API configuration
 OLLAMA_BASE_URL = os.environ.get('OLLAMA_BASE_URL', 'http://localhost:11434')
@@ -564,6 +566,9 @@ def check_ppt_service():
         response = requests.get(f"{PPT_SERVICE_URL}/health", timeout=5)
         if response.status_code == 200:
             data = response.json()
+            # Ensure port is included in service info
+            if 'port' not in data:
+                data['port'] = 5001
             return jsonify({
                 "available": True,
                 "service_info": data
