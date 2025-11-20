@@ -12,44 +12,44 @@
         }
 
         :root {
-            --primary: #2f2f2f;
-            --primary-hover: #1a1a1a;
-            --secondary: #666666;
-            --accent: #ab7c5f;
-            --accent-hover: #8b6850;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f8f8;
-            --bg-tertiary: #fafafa;
-            --border: #e5e5e5;
-            --border-light: #f0f0f0;
-            --text-primary: #2f2f2f;
-            --text-secondary: #666666;
-            --text-tertiary: #999999;
-            --success: #16a34a;
-            --error: #dc2626;
+            --navy-blue: #1e3a5f;
+            --dark-navy: #152a45;
+            --light-navy: #2d5a8c;
+            --accent-blue: #4a9eff;
+            --bg-gray: #f7f9fc;
+            --border-gray: #e5e7eb;
+            --text-dark: #1f2937;
+            
+            
+            
+            
+            
+            
+            
+            --text-light: #6b7280;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--bg-secondary);
+            background: var(--bg-gray);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
         .header {
-            background: var(--bg-primary);
+            background: white;
             padding: 1rem 2rem;
-            box-shadow: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border-gray);
         }
 
         .header h1 {
             font-size: 1.25rem;
-            color: var(--text-primary);
+            color: var(--text-dark);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -63,9 +63,9 @@
         }
 
         .ppt-button {
-            background: var(--primary);
+            background: var(--navy-blue);
             color: white;
-            border: 1px solid var(--primary);
+            border: 1px solid var(--navy-blue);
             padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
@@ -79,14 +79,14 @@
         }
 
         .ppt-button:hover {
-            background: var(--primary-hover);
-            border-color: var(--primary-hover);
+            background: var(--dark-navy);
+            border-color: var(--dark-navy);
         }
 
         .embedding-button {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+            background: white;
+            color: var(--text-dark);
+            border: 1px solid var(--border-gray);
             padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
@@ -100,7 +100,7 @@
         }
 
         .embedding-button:hover {
-            background: var(--bg-tertiary);
+            background: var(--bg-gray);
             border-color: var(--text-tertiary);
         }
 
@@ -109,7 +109,7 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.8125rem;
-            color: var(--text-secondary);
+            color: var(--text-light);
         }
 
         .status-dot {
@@ -136,17 +136,17 @@
 
         .sidebar {
             flex: 0 0 280px;
-            background: var(--bg-primary);
+            background: white;
             border-radius: 6px;
             padding: 1.5rem;
-            box-shadow: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             height: fit-content;
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-gray);
         }
 
         .chat-area {
             flex: 1;
-            background: var(--bg-primary);
+            background: white;
             border-radius: 6px;
             padding: 0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
