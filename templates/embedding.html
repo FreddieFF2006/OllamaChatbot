@@ -942,9 +942,9 @@
                     <div class="sources-section">
                         <div class="sources-header" onclick="toggleSources('${sourcesId}')">
                             <strong>📚 Sources (${sources.length})</strong>
-                            <span class="toggle-icon" id="${sourcesId}-icon">▼</span>
+                            <span class="toggle-icon collapsed" id="${sourcesId}-icon">▼</span>
                         </div>
-                        <div class="sources-content" id="${sourcesId}">
+                        <div class="sources-content collapsed" id="${sourcesId}">
                             ${sources.map((s, i) => `
                                 <div class="source-item">
                                     <strong>${i + 1}. ${s.filename}</strong> - Page ${s.page}
