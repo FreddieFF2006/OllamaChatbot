@@ -176,14 +176,14 @@
         }
 
         .file-item {
-            background: var(--bg-gray);
+            background: var(--bg-tertiary);
             padding: 0.75rem;
             border-radius: 6px;
             margin-bottom: 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid var(--border-gray);
+            border: 1px solid var(--border);
         }
 
         .btn {
@@ -236,15 +236,15 @@
         }
 
         .status.success {
-            background: #f0fdf4;
+            background: rgba(74, 222, 128, 0.1);
             color: var(--success);
-            border-color: #86efac;
+            border-color: var(--success);
         }
 
         .status.error {
-            background: #fef2f2;
+            background: rgba(248, 113, 113, 0.1);
             color: var(--error);
-            border-color: #fca5a5;
+            border-color: var(--error);
         }
 
         .status.info {
@@ -341,49 +341,49 @@
 
         .message-content table th,
         .message-content table td {
-            border: 1px solid var(--border-gray);
+            border: 1px solid var(--border);
             padding: 0.5rem;
             text-align: left;
         }
 
         .message-content table th {
-            background: var(--bg-gray);
+            background: var(--bg-tertiary);
             font-weight: 600;
-            color: var(--navy-blue);
+            color: var(--text-primary);
         }
 
         .message-content blockquote {
-            border-left: 4px solid var(--accent-blue);
+            border-left: 4px solid var(--primary);
             padding-left: 1rem;
             margin: 1rem 0;
-            color: var(--text-light);
+            color: var(--text-secondary);
             font-style: italic;
         }
 
         .message-content hr {
             border: none;
-            border-top: 2px solid var(--border-gray);
+            border-top: 2px solid var(--border);
             margin: 1.5rem 0;
         }
 
         .message.user .message-content {
-            background: var(--navy-blue);
+            background: var(--primary);
             color: white;
-            border-color: var(--navy-blue);
+            border-color: var(--primary);
         }
 
         .sources-section {
             margin-top: 1rem;
-            background: var(--bg-gray);
+            background: var(--bg-tertiary);
             border-radius: 6px;
             font-size: 0.9rem;
             overflow: hidden;
-            border: 1px solid var(--border-gray);
+            border: 1px solid var(--border);
         }
 
         .sources-header {
             padding: 0.75rem 1rem;
-            background: var(--navy-blue);
+            background: var(--primary);
             color: white;
             cursor: pointer;
             display: flex;
@@ -394,7 +394,7 @@
         }
 
         .sources-header:hover {
-            background: var(--dark-navy);
+            background: var(--primary-hover);
         }
 
         .sources-header strong {
@@ -415,7 +415,7 @@
             overflow: hidden;
             transition: max-height 0.3s ease-out;
             padding: 1rem;
-            background: white;
+            background: var(--bg-primary);
         }
 
         .sources-content.collapsed {
@@ -426,11 +426,10 @@
         .source-item {
             padding: 0.75rem;
             margin: 0.5rem 0;
-            background: var(--bg-gray);
+            background: var(--bg-tertiary);
             border-radius: 6px;
-            border-left: 3px solid var(--accent-blue);
-            border: 1px solid var(--border-gray);
-            border-left: 3px solid var(--accent-blue);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
         }
 
         .input-area {
@@ -441,22 +440,23 @@
         .input-area input {
             flex: 1;
             padding: 0.75rem 1rem;
-            border: 1px solid var(--border-gray);
+            border: 1px solid var(--border);
             border-radius: 6px;
             font-size: 0.95rem;
             transition: all 0.2s;
-            background: white;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
         }
 
         .input-area input:focus {
             outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(204, 122, 74, 0.1);
         }
 
         .input-area button {
             padding: 0.75rem 1.5rem;
-            background: var(--navy-blue);
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 6px;
@@ -467,11 +467,12 @@
         }
 
         .input-area button:hover:not(:disabled) {
-            background: var(--dark-navy);
+            background: var(--primary-hover);
         }
 
         .input-area button:disabled {
-            background: #d1d5db;
+            background: var(--border);
+            color: var(--text-tertiary);
             cursor: not-allowed;
         }
 
@@ -479,8 +480,8 @@
             display: inline-block;
             width: 1rem;
             height: 1rem;
-            border: 2px solid var(--border-gray);
-            border-top: 2px solid var(--navy-blue);
+            border: 2px solid var(--border);
+            border-top: 2px solid var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -493,27 +494,27 @@
         .welcome-message {
             text-align: center;
             padding: 3rem 2rem;
-            color: var(--text-light);
+            color: var(--text-secondary);
         }
 
         .welcome-message h2 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--navy-blue);
+            color: var(--text-primary);
         }
 
         .config-info {
-            background: var(--bg-gray);
+            background: var(--bg-tertiary);
             padding: 1rem;
             border-radius: 6px;
             margin-top: 1rem;
             font-size: 0.85rem;
-            color: var(--text-light);
-            border: 1px solid var(--border-gray);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
         }
 
         .config-info strong {
-            color: var(--navy-blue);
+            color: var(--text-primary);
         }
     </style>
 </head>
@@ -533,7 +534,7 @@
             <div class="upload-area" id="uploadArea">
                 <div class="upload-icon">📄</div>
                 <p><strong>Click to upload</strong> or drag and drop</p>
-                <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                <p style="font-size: 0.9rem; color: var(--text-tertiary); margin-top: 0.5rem;">
                     PDF, DOCX, TXT files
                 </p>
             </div>
@@ -543,16 +544,16 @@
             <div class="file-list" id="fileList"></div>
 
             <!-- PowerPoint JSON Import Section -->
-            <div style="margin: 1.5rem 0; padding-top: 1.5rem; border-top: 2px solid var(--border-gray);">
+            <div style="margin: 1.5rem 0; padding-top: 1.5rem; border-top: 2px solid var(--border);">
                 <h3 class="sidebar-title">📊 Import PowerPoint JSON</h3>
-                <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
                     Upload JSON files from the PowerPoint Extraction tool
                 </p>
                 <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
                 <button class="btn btn-secondary" id="jsonUploadBtn" onclick="document.getElementById('jsonFileInput').click()">
                     Choose JSON File
                 </button>
-                <div id="jsonFileName" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-dark);"></div>
+                <div id="jsonFileName" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-primary);"></div>
                 <button class="btn btn-primary" id="importJsonBtn" disabled style="margin-top: 0.5rem;">
                     Import JSON to Embedding
                 </button>
