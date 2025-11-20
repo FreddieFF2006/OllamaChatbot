@@ -18,42 +18,39 @@
         }
 
         :root {
-            --primary-purple: #8b5cf6;
-            --dark-purple: #7c3aed;
-            --light-purple: #a78bfa;
-            --accent-pink: #ec4899;
-            --accent-cyan: #06b6d4;
-            --bg-light: #faf5ff;
-            --border-purple: #ddd6fe;
+            --navy-blue: #1e3a5f;
+            --dark-navy: #152a45;
+            --light-navy: #2d5a8c;
+            --accent-blue: #4a9eff;
+            --accent-green: #10b981;
+            --bg-gray: #f7f9fc;
+            --border-gray: #e5e7eb;
             --text-dark: #1f2937;
             --text-light: #6b7280;
-            --success: #10b981;
-            --error: #ef4444;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-attachment: fixed;
+            background: var(--bg-gray);
             display: flex;
             flex-direction: column;
             position: relative;
         }
 
         .header {
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            background: white;
             padding: 1rem 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: none;
+            border-bottom: 1px solid var(--border-gray);
             flex-shrink: 0;
         }
 
         .header h1 {
             font-size: 1.5rem;
-            color: white;
+            color: var(--navy-blue);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -61,23 +58,20 @@
         }
 
         .back-button {
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--navy-blue);
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: none;
             padding: 0.5rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 0.95rem;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: background 0.2s;
             font-weight: 500;
-            backdrop-filter: blur(10px);
         }
 
         .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-1px);
+            background: var(--dark-navy);
         }
 
         .iframe-container {
@@ -103,7 +97,7 @@
         }
 
         .error-message h2 {
-            color: var(--primary-purple);
+            color: var(--navy-blue);
             margin-bottom: 1rem;
         }
 

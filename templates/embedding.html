@@ -12,23 +12,19 @@
         }
 
         :root {
-            --primary-purple: #8b5cf6;
-            --dark-purple: #7c3aed;
-            --light-purple: #a78bfa;
-            --accent-pink: #ec4899;
-            --accent-cyan: #06b6d4;
-            --bg-light: #faf5ff;
-            --border-purple: #ddd6fe;
+            --navy-blue: #1e3a5f;
+            --dark-navy: #152a45;
+            --light-navy: #2d5a8c;
+            --accent-blue: #4a9eff;
+            --bg-gray: #f7f9fc;
+            --border-gray: #e5e7eb;
             --text-dark: #1f2937;
             --text-light: #6b7280;
-            --success: #10b981;
-            --error: #ef4444;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-attachment: fixed;
+            background: var(--bg-gray);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -36,129 +32,123 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            background: white;
             padding: 1rem 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: none;
+            border-bottom: 1px solid var(--border-gray);
         }
 
         .header h1 {
-            font-size: 1.25rem;
-            color: white;
+            font-size: 1.5rem;
+            color: var(--navy-blue);
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .back-button {
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--navy-blue);
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 0.875rem;
+            font-size: 0.95rem;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: background 0.2s;
             font-weight: 500;
-            backdrop-filter: blur(10px);
         }
 
         .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-1px);
+            background: var(--dark-navy);
         }
 
         .container {
             flex: 1;
-            max-width: 1200px;
+            max-width: 1400px;
             width: 100%;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+            margin: 2rem auto;
+            padding: 0 2rem;
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .upload-section {
-            flex: 0 0 320px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 0 0 350px;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             height: fit-content;
-            border: 1px solid var(--border-purple);
+            border: 1px solid var(--border-gray);
         }
 
         .chat-section {
             flex: 1;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             max-height: calc(100vh - 200px);
-            border: 1px solid var(--border-purple);
+            border: 1px solid var(--border-gray);
         }
 
         .section-title {
-            font-size: 1.125rem;
-            font-weight: 500;
-            margin-bottom: 1.25rem;
-            color: var(--primary-purple);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--navy-blue);
         }
 
         .sidebar-title {
-            font-size: 0.9375rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--navy-blue);
         }
 
         .model-select {
             width: 100%;
-            padding: 0.625rem 0.75rem;
+            padding: 0.75rem;
             border: 1px solid var(--border-gray);
-            border-radius: 4px;
-            font-size: 0.875rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
             margin-bottom: 0;
-            transition: all 0.15s;
+            transition: all 0.2s;
             background: white;
-            color: var(--text-dark);
         }
 
         .model-select:focus {
             outline: none;
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
         }
 
         .upload-area {
-            border: 1px dashed var(--border-gray);
-            border-radius: 4px;
-            padding: 1.5rem;
+            border: 2px dashed var(--accent-blue);
+            border-radius: 8px;
+            padding: 2rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: all 0.2s;
             margin-bottom: 1rem;
-            background: var(--bg-gray);
+            background: #fafbfc;
         }
 
         .upload-area:hover {
-            background: var(--bg-gray);
-            border-color: var(--secondary);
+            background: #f0f7ff;
+            border-color: var(--navy-blue);
         }
 
         .upload-area.dragover {
-            background: var(--bg-gray);
-            border-color: var(--navy-blue);
+            background: #f0f3ff;
+            border-color: #5568d3;
         }
 
         #fileInput {
@@ -199,108 +189,107 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--accent-pink) 100%);
+            background: var(--navy-blue);
             color: white;
             margin-bottom: 0.5rem;
-            border: none;
-            box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, var(--dark-purple) 0%, #db2777 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
+            background: var(--dark-navy);
         }
 
         .btn-primary:disabled {
-            background: var(--border-gray);
-            border-color: var(--border-gray);
-            color: var(--text-tertiary);
+            background: #d1d5db;
             cursor: not-allowed;
         }
 
         .btn-secondary {
-            background: var(--bg-light);
-            color: var(--primary-purple);
-            border: 1px solid var(--border-purple);
+            background: var(--bg-gray);
+            color: var(--navy-blue);
+            border: 1px solid var(--border-gray);
         }
 
         .btn-secondary:hover {
-            background: var(--light-purple);
-            color: white;
-            border-color: var(--light-purple);
+            background: #e5e7eb;
         }
 
         .status {
-            padding: 0.625rem;
-            border-radius: 4px;
+            padding: 0.75rem;
+            border-radius: 6px;
             margin-top: 1rem;
-            font-size: 0.8125rem;
-            border: 1px solid;
+            font-size: 0.9rem;
         }
 
         .status.success {
-            background: #f0fdf4;
-            color: var(--success);
-            border-color: #86efac;
+            background: #d4edda;
+            color: #155724;
         }
 
         .status.error {
-            background: #fef2f2;
-            color: var(--error);
-            border-color: #fca5a5;
+            background: #f8d7da;
+            color: #721c24;
         }
 
         .status.info {
-            background: var(--bg-gray);
-            color: var(--text-light);
-            border-color: var(--border-gray);
+            background: #d1ecf1;
+            color: #0c5460;
         }
 
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            margin-bottom: 0;
-            padding: 1.5rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
             background: var(--bg-gray);
-            border-radius: 0;
+            border-radius: 8px;
         }
 
         .message {
             margin-bottom: 1.5rem;
-            animation: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .message-label {
-            font-size: 0.8125rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--text-light);
         }
 
         .message-content {
             background: white;
-            padding: 1.25rem;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-light);
-            line-height: 1.6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-gray);
+            line-height: 1.8;
         }
 
         .message-content h1,
         .message-content h2,
         .message-content h3,
         .message-content h4 {
-            margin-top: 1.25rem;
-            margin-bottom: 0.625rem;
-            font-weight: 500;
-            color: var(--text-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--navy-blue);
         }
 
-        .message-content h1 { font-size: 1.375rem; }
-        .message-content h2 { font-size: 1.1875rem; }
-        .message-content h3 { font-size: 1.0625rem; }
-        .message-content h4 { font-size: 0.9375rem; }
+        .message-content h1 { font-size: 1.5rem; }
+        .message-content h2 { font-size: 1.3rem; }
+        .message-content h3 { font-size: 1.15rem; }
+        .message-content h4 { font-size: 1rem; }
 
         .message-content h1:first-child,
         .message-content h2:first-child,
@@ -310,31 +299,31 @@
 
         .message-content ul,
         .message-content ol {
-            margin: 0.875rem 0;
+            margin: 1rem 0;
             padding-left: 1.5rem;
         }
 
         .message-content li {
-            margin: 0.375rem 0;
-            line-height: 1.5;
+            margin: 0.5rem 0;
+            line-height: 1.6;
         }
 
         .message-content strong {
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-dark);
         }
 
         .message-content p {
-            margin: 0.625rem 0;
+            margin: 0.75rem 0;
         }
 
         .message-content code {
             background: var(--bg-gray);
-            padding: 0.1875rem 0.375rem;
+            padding: 0.2rem 0.4rem;
             border-radius: 3px;
             font-family: 'Courier New', monospace;
-            font-size: 0.875em;
-            color: var(--text-dark);
+            font-size: 0.9em;
+            color: var(--navy-blue);
         }
 
         .message-content table {
@@ -371,9 +360,9 @@
         }
 
         .message.user .message-content {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--accent-pink) 100%);
+            background: var(--navy-blue);
             color: white;
-            border-color: transparent;
+            border-color: var(--navy-blue);
         }
 
         .sources-section {
@@ -454,27 +443,24 @@
 
         .input-area input:focus {
             outline: none;
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
         }
 
         .input-area button {
             padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--accent-pink) 100%);
+            background: var(--navy-blue);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: all 0.2s;
-            box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+            transition: background 0.2s;
         }
 
         .input-area button:hover:not(:disabled) {
-            background: linear-gradient(135deg, var(--dark-purple) 0%, #db2777 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
+            background: var(--dark-navy);
         }
 
         .input-area button:disabled {
@@ -486,8 +472,8 @@
             display: inline-block;
             width: 1rem;
             height: 1rem;
-            border: 2px solid var(--border-purple);
-            border-top: 2px solid var(--primary-purple);
+            border: 2px solid var(--border-gray);
+            border-top: 2px solid var(--navy-blue);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -506,7 +492,7 @@
         .welcome-message h2 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--primary-purple);
+            color: var(--navy-blue);
         }
 
         .config-info {
@@ -546,24 +532,8 @@
             </div>
             
             <input type="file" id="fileInput" multiple accept=".pdf,.docx,.doc,.txt">
-
+            
             <div class="file-list" id="fileList"></div>
-
-            <!-- PowerPoint JSON Import Section -->
-            <div style="margin: 1.5rem 0; padding-top: 1.5rem; border-top: 2px solid var(--border-gray);">
-                <h3 class="sidebar-title">📊 Import PowerPoint JSON</h3>
-                <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">
-                    Upload JSON files from the PowerPoint Extraction tool
-                </p>
-                <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
-                <button class="btn btn-secondary" id="jsonUploadBtn" onclick="document.getElementById('jsonFileInput').click()">
-                    Choose JSON File
-                </button>
-                <div id="jsonFileName" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-dark);"></div>
-                <button class="btn btn-primary" id="importJsonBtn" disabled style="margin-top: 0.5rem;">
-                    Import JSON to Embedding
-                </button>
-            </div>
 
             <div class="sidebar-section" style="margin-bottom: 1rem;">
                 <h3 class="sidebar-title">AI Model</h3>
@@ -956,9 +926,9 @@
                     <div class="sources-section">
                         <div class="sources-header" onclick="toggleSources('${sourcesId}')">
                             <strong>📚 Sources (${sources.length})</strong>
-                            <span class="toggle-icon collapsed" id="${sourcesId}-icon">▼</span>
+                            <span class="toggle-icon" id="${sourcesId}-icon">▼</span>
                         </div>
-                        <div class="sources-content collapsed" id="${sourcesId}">
+                        <div class="sources-content" id="${sourcesId}">
                             ${sources.map((s, i) => `
                                 <div class="source-item">
                                     <strong>${i + 1}. ${s.filename}</strong> - Page ${s.page}
@@ -988,7 +958,7 @@
 
         // Check embedding availability and load models on startup
         loadModels();
-
+        
         fetch('/api/embedding/status')
             .then(r => r.json())
             .then(data => {
@@ -1000,92 +970,520 @@
                     initBtn.disabled = true;
                 }
             });
-
-        // PowerPoint JSON Import functionality
-        let selectedJsonFile = null;
-
-        document.getElementById('jsonFileInput').addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                selectedJsonFile = file;
-                document.getElementById('jsonFileName').textContent = `Selected: ${file.name}`;
-                document.getElementById('importJsonBtn').disabled = false;
-            }
-        });
-
-        document.getElementById('importJsonBtn').addEventListener('click', async () => {
-            if (!selectedJsonFile) {
-                showStatus('❌ Please select a JSON file first', 'error');
-                return;
-            }
-
-            const importBtn = document.getElementById('importJsonBtn');
-            importBtn.disabled = true;
-            importBtn.innerHTML = '<span class="loading"></span> Importing...';
-
-            try {
-                // Read the JSON file
-                const reader = new FileReader();
-                reader.onload = async (event) => {
-                    try {
-                        const jsonData = JSON.parse(event.target.result);
-
-                        // Send to import endpoint
-                        const response = await fetch('/api/embedding/import-json', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ json_data: jsonData })
-                        });
-
-                        const result = await response.json();
-
-                        if (result.success) {
-                            documentsLoaded = true;
-                            questionInput.disabled = false;
-                            askBtn.disabled = false;
-
-                            // Clear welcome message
-                            const welcomeMsg = chatMessages.querySelector('.welcome-message');
-                            if (welcomeMsg) {
-                                chatMessages.innerHTML = '';
-                            }
-
-                            // Add success message to chat
-                            addMessage('system', `✅ Imported PowerPoint: ${result.deck_name} (${result.slides_imported} slides, ${result.chunks_created} chunks)`);
-
-                            // Add to file list
-                            const fileListDiv = document.getElementById('fileList');
-                            const pptItem = document.createElement('div');
-                            pptItem.className = 'file-item';
-                            pptItem.innerHTML = `<span>📊 ${result.deck_name} (PPT JSON)</span>`;
-                            fileListDiv.appendChild(pptItem);
-
-                            showStatus(`✅ Successfully imported ${result.deck_name}`, 'success');
-
-                            // Reset JSON selection
-                            selectedJsonFile = null;
-                            document.getElementById('jsonFileName').textContent = '';
-                            document.getElementById('jsonFileInput').value = '';
-                        } else {
-                            throw new Error(result.error || 'Import failed');
-                        }
-                    } catch (error) {
-                        showStatus('❌ Error: ' + error.message, 'error');
-                    } finally {
-                        importBtn.disabled = false;
-                        importBtn.innerHTML = 'Import JSON to Embedding';
-                    }
-                };
-
-                reader.readAsText(selectedJsonFile);
-
-            } catch (error) {
-                showStatus('❌ Error reading file: ' + error.message, 'error');
-                importBtn.disabled = false;
-                importBtn.innerHTML = 'Import JSON to Embedding';
-            }
-        });
     </script>
 
+
+        <!-- PPT Extraction Modal -->
+    <div id="pptModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📊 PowerPoint Extraction</h2>
+                <span class="modal-close" onclick="closePPTModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">
+                    Extract text from PowerPoint presentations using AI vision models. The extracted content will be automatically added to your embedding knowledge base.
+                </p>
+                
+                <!-- Service Status -->
+                <div id="pptServiceStatus" class="service-status">
+                    <span class="status-indicator">🔍</span>
+                    <span>Checking PPT service...</span>
+                </div>
+                
+                <div id="pptExtractionForm" style="display: none;">
+                    <!-- File Upload -->
+                    <div class="form-group">
+                        <label for="pptFile">PowerPoint File</label>
+                        <input type="file" id="pptFile" accept=".ppt,.pptx" class="file-input">
+                        <small>Supported: .ppt, .pptx (max 100MB)</small>
+                    </div>
+                    
+                    <!-- LLM Client Selection -->
+                    <div class="form-group">
+                        <label for="pptClient">LLM Provider</label>
+                        <select id="pptClient" class="form-select" onchange="updatePPTModels()">
+                            <option value="openai">OpenAI</option>
+                            <option value="anthropic">Anthropic (Claude)</option>
+                            <option value="gemini">Google Gemini</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Model Selection -->
+                    <div class="form-group">
+                        <label for="pptModel">Model</label>
+                        <select id="pptModel" class="form-select">
+                            <option value="gpt-4o-mini">GPT-4o Mini (Recommended)</option>
+                            <option value="gpt-4o">GPT-4o</option>
+                            <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                        </select>
+                        <small>GPT-4o Mini is fast and cost-effective for slides</small>
+                    </div>
+                    
+                    <!-- API Key -->
+                    <div class="form-group">
+                        <label for="pptApiKey">API Key</label>
+                        <input type="password" id="pptApiKey" class="form-input" placeholder="Enter your API key">
+                        <small>Your API key is sent securely and not stored</small>
+                    </div>
+                    
+                    <!-- Additional Instructions (Optional) -->
+                    <div class="form-group">
+                        <label for="pptInstructions">Additional Instructions (Optional)</label>
+                        <textarea id="pptInstructions" class="form-textarea" rows="3" 
+                            placeholder="E.g., Focus on extracting data tables, Describe charts in detail, etc."></textarea>
+                    </div>
+                    
+                    <!-- Rate Limit -->
+                    <div class="form-group">
+                        <label for="pptRateLimit">Rate Limit (requests/min)</label>
+                        <input type="number" id="pptRateLimit" class="form-input" value="60" min="1" max="200">
+                        <small>Control API usage (default: 60/min)</small>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div id="pptProgress" class="progress-container" style="display: none;">
+                        <div class="progress-bar">
+                            <div id="pptProgressBar" class="progress-fill"></div>
+                        </div>
+                        <div id="pptProgressText" class="progress-text">Processing...</div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="modal-actions">
+                        <button onclick="closePPTModal()" class="btn btn-secondary">Cancel</button>
+                        <button onclick="extractPPT()" id="extractPPTBtn" class="btn btn-primary">
+                            🚀 Extract & Import
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.3s;
+    }
+
+    .modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 0;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        animation: slideDown 0.3s;
+    }
+
+    .modal-header {
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .modal-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .modal-close {
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+    }
+
+    .modal-close:hover {
+        opacity: 1;
+    }
+
+    .modal-body {
+        padding: 2rem;
+    }
+
+    .modal-description {
+        color: #666;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .service-status {
+        padding: 1rem;
+        border-radius: 8px;
+        background: #f7fafc;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .service-status.online {
+        background: #f0fdf4;
+        border-color: #86efac;
+        color: #166534;
+    }
+
+    .service-status.offline {
+        background: #fef2f2;
+        border-color: #fca5a5;
+        color: #991b1b;
+    }
+
+    .status-indicator {
+        font-size: 1.2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-group small {
+        display: block;
+        margin-top: 0.25rem;
+        color: #666;
+        font-size: 0.875rem;
+    }
+
+    .form-input, .form-select, .form-textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+
+    .file-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px dashed #e0e0e0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .file-input:hover {
+        border-color: #667eea;
+        background: #f7fafc;
+    }
+
+    .progress-container {
+        margin: 1.5rem 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #e0e0e0;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        transition: width 0.3s;
+        width: 0%;
+    }
+
+    .progress-text {
+        text-align: center;
+        margin-top: 0.5rem;
+        color: #667eea;
+        font-weight: 600;
+    }
+
+    .modal-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+        from { 
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+        to { 
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    </style>
+
+    <script>
+    // PPT Extraction Functions
+
+    // Model configurations
+    const PPT_MODELS = {
+        openai: [
+            { value: 'gpt-4o-mini', label: 'GPT-4o Mini (Recommended)' },
+            { value: 'gpt-4o', label: 'GPT-4o' },
+            { value: 'gpt-4-turbo', label: 'GPT-4 Turbo' }
+        ],
+        anthropic: [
+            { value: 'claude-sonnet-4-20250514', label: 'Claude Sonnet 4 (Recommended)' },
+            { value: 'claude-3-5-sonnet-20241022', label: 'Claude 3.5 Sonnet' },
+            { value: 'claude-opus-4-20250514', label: 'Claude Opus 4' }
+        ],
+        gemini: [
+            { value: 'gemini-2.0-flash-exp', label: 'Gemini 2.0 Flash (Recommended)' },
+            { value: 'gemini-1.5-pro', label: 'Gemini 1.5 Pro' },
+            { value: 'gemini-1.5-flash', label: 'Gemini 1.5 Flash' }
+        ]
+    };
+
+    // Open PPT Modal
+    function openPPTModal() {
+        document.getElementById('pptModal').style.display = 'block';
+        checkPPTService();
+    }
+
+    // Close PPT Modal
+    function closePPTModal() {
+        document.getElementById('pptModal').style.display = 'none';
+        // Reset form
+        document.getElementById('pptFile').value = '';
+        document.getElementById('pptApiKey').value = '';
+        document.getElementById('pptInstructions').value = '';
+        document.getElementById('pptProgress').style.display = 'none';
+    }
+
+    // Check if PPT service is available
+    async function checkPPTService() {
+        const statusDiv = document.getElementById('pptServiceStatus');
+        const formDiv = document.getElementById('pptExtractionForm');
+        
+        try {
+            const response = await fetch('/api/ppt/check-service');
+            const data = await response.json();
+            
+            if (data.available) {
+                statusDiv.className = 'service-status online';
+                statusDiv.innerHTML = `
+                    <span class="status-indicator">✅</span>
+                    <span>PPT Extraction Service Online (Port ${data.service_info.port})</span>
+                `;
+                formDiv.style.display = 'block';
+                
+                if (!data.service_info.libreoffice_available) {
+                    statusDiv.innerHTML += '<br><small>⚠️ Warning: LibreOffice not detected. Conversion may fail.</small>';
+                }
+            } else {
+                statusDiv.className = 'service-status offline';
+                statusDiv.innerHTML = `
+                    <span class="status-indicator">❌</span>
+                    <span>PPT Extraction Service Offline - Please start the service on port 5001</span>
+                `;
+                formDiv.style.display = 'none';
+            }
+        } catch (error) {
+            statusDiv.className = 'service-status offline';
+            statusDiv.innerHTML = `
+                <span class="status-indicator">❌</span>
+                <span>Cannot connect to PPT service: ${error.message}</span>
+            `;
+            formDiv.style.display = 'none';
+        }
+    }
+
+    // Update models when client changes
+    function updatePPTModels() {
+        const client = document.getElementById('pptClient').value;
+        const modelSelect = document.getElementById('pptModel');
+        const models = PPT_MODELS[client] || [];
+        
+        modelSelect.innerHTML = models.map(m => 
+            `<option value="${m.value}">${m.label}</option>`
+        ).join('');
+    }
+
+    // Extract PPT
+    async function extractPPT() {
+        const fileInput = document.getElementById('pptFile');
+        const client = document.getElementById('pptClient').value;
+        const model = document.getElementById('pptModel').value;
+        const apiKey = document.getElementById('pptApiKey').value;
+        const instructions = document.getElementById('pptInstructions').value;
+        const rateLimit = document.getElementById('pptRateLimit').value;
+        
+        // Validation
+        if (!fileInput.files || fileInput.files.length === 0) {
+            showStatus('❌ Please select a PowerPoint file', 'error');
+            return;
+        }
+        
+        if (!apiKey) {
+            showStatus('❌ Please enter your API key', 'error');
+            return;
+        }
+        
+        const file = fileInput.files[0];
+        const maxSize = 100 * 1024 * 1024; // 100MB
+        
+        if (file.size > maxSize) {
+            showStatus('❌ File too large (max 100MB)', 'error');
+            return;
+        }
+        
+        // Show progress
+        const progressDiv = document.getElementById('pptProgress');
+        const progressBar = document.getElementById('pptProgressBar');
+        const progressText = document.getElementById('pptProgressText');
+        const extractBtn = document.getElementById('extractPPTBtn');
+        
+        progressDiv.style.display = 'block';
+        progressBar.style.width = '10%';
+        progressText.textContent = 'Uploading file...';
+        extractBtn.disabled = true;
+        
+        try {
+            // Prepare form data
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('client', client);
+            formData.append('model', model);
+            formData.append('api_key', apiKey);
+            formData.append('instructions', instructions);
+            formData.append('rate_limit', rateLimit);
+            
+            progressBar.style.width = '30%';
+            progressText.textContent = 'Extracting text from slides...';
+            
+            // Send to extraction service via main app
+            const response = await fetch('/api/ppt/extract', {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Extraction failed');
+            }
+            
+            const result = await response.json();
+            
+            progressBar.style.width = '70%';
+            progressText.textContent = `Extracted ${result.slides_count} slides. Importing to embedding...`;
+            
+            // Import JSON data to embedding system
+            const importResponse = await fetch('/api/embedding/import-json', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    json_data: result.data,
+                    session_id: 'ppt_session'
+                })
+            });
+            
+            if (!importResponse.ok) {
+                const error = await importResponse.json();
+                throw new Error(error.error || 'Import failed');
+            }
+            
+            const importResult = await importResponse.json();
+            
+            progressBar.style.width = '100%';
+            progressText.textContent = 'Complete!';
+            
+            // Enable question input
+            documentsLoaded = true;
+            questionInput.disabled = false;
+            askBtn.disabled = false;
+            
+            // Clear welcome message if it exists
+            const welcomeMsg = chatMessages.querySelector('.welcome-message');
+            if (welcomeMsg) {
+                chatMessages.innerHTML = '';
+            }
+            
+            // Add message to chat
+            addMessage('system', `✅ Imported PowerPoint: ${importResult.deck_name} (${importResult.slides_imported} slides, ${importResult.chunks_created} chunks)`);
+            
+            // Add to file list display
+            const fileListDiv = document.getElementById('fileList');
+            const pptItem = document.createElement('div');
+            pptItem.className = 'file-item';
+            pptItem.innerHTML = `<span>📊 ${importResult.deck_name} (PPT)</span>`;
+            fileListDiv.appendChild(pptItem);
+            
+            showStatus(`✅ Successfully imported ${importResult.deck_name}`, 'success');
+            
+            // Close modal after delay
+            setTimeout(() => {
+                closePPTModal();
+            }, 2000);
+            
+        } catch (error) {
+            progressText.textContent = 'Error: ' + error.message;
+            showStatus('❌ ' + error.message, 'error');
+        } finally {
+            extractBtn.disabled = false;
+        }
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('pptModal');
+        if (event.target === modal) {
+            closePPTModal();
+        }
+    }
+    </script>
+
+    <!-- 
+    Add this button to your embedding.html header, next to the other buttons:
+    -->
+    <button onclick="openPPTModal()" class="btn btn-warning">
+        📊 PPT Extraction
+    </button>
+
+    
+
+
+    
+
+    
 </body>
 </html>
