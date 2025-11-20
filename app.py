@@ -462,19 +462,25 @@ def upload_documents():
     
     if not files:
         return jsonify({"error": "No files selected"}), 400
-    
+
     try:
         chatbot = chatbot_instances[session_id]['chatbot']
         processed_files = []
-        
+        file_paths = []
+
+        # Save all files first
         for file in files:
             if file.filename:
-                # Save file temporarily and process
+                # Save file temporarily
                 file_path = f"/tmp/{file.filename}"
                 file.save(file_path)
-                chatbot.load_document(file_path)
+                file_paths.append(file_path)
                 processed_files.append(file.filename)
-        
+
+        # Process all documents at once
+        if file_paths:
+            chatbot.add_documents(file_paths)
+
         return jsonify({
             "success": True,
             "files": processed_files,
