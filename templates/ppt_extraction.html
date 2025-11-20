@@ -11,6 +11,12 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
         :root {
             --navy-blue: #1e3a5f;
             --dark-navy: #152a45;
@@ -25,9 +31,9 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: var(--bg-gray);
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .header {
@@ -38,6 +44,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-gray);
+            flex-shrink: 0;
         }
 
         .header h1 {
@@ -69,11 +76,14 @@
         .iframe-container {
             flex: 1;
             width: 100%;
-            height: calc(100vh - 70px);
-            border: none;
+            position: relative;
+            overflow: hidden;
         }
 
         iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
