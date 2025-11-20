@@ -532,8 +532,24 @@
             </div>
             
             <input type="file" id="fileInput" multiple accept=".pdf,.docx,.doc,.txt">
-            
+
             <div class="file-list" id="fileList"></div>
+
+            <!-- PowerPoint JSON Import Section -->
+            <div style="margin: 1.5rem 0; padding-top: 1.5rem; border-top: 2px solid var(--border-gray);">
+                <h3 class="sidebar-title">📊 Import PowerPoint JSON</h3>
+                <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">
+                    Upload JSON files from the PowerPoint Extraction tool
+                </p>
+                <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
+                <button class="btn btn-secondary" id="jsonUploadBtn" onclick="document.getElementById('jsonFileInput').click()">
+                    Choose JSON File
+                </button>
+                <div id="jsonFileName" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-dark);"></div>
+                <button class="btn btn-primary" id="importJsonBtn" disabled style="margin-top: 0.5rem;">
+                    Import JSON to Embedding
+                </button>
+            </div>
 
             <div class="sidebar-section" style="margin-bottom: 1rem;">
                 <h3 class="sidebar-title">AI Model</h3>
@@ -958,7 +974,7 @@
 
         // Check embedding availability and load models on startup
         loadModels();
-        
+
         fetch('/api/embedding/status')
             .then(r => r.json())
             .then(data => {
@@ -970,6 +986,91 @@
                     initBtn.disabled = true;
                 }
             });
+
+        // PowerPoint JSON Import functionality
+        let selectedJsonFile = null;
+
+        document.getElementById('jsonFileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                selectedJsonFile = file;
+                document.getElementById('jsonFileName').textContent = `Selected: ${file.name}`;
+                document.getElementById('importJsonBtn').disabled = false;
+            }
+        });
+
+        document.getElementById('importJsonBtn').addEventListener('click', async () => {
+            if (!selectedJsonFile) {
+                showStatus('❌ Please select a JSON file first', 'error');
+                return;
+            }
+
+            const importBtn = document.getElementById('importJsonBtn');
+            importBtn.disabled = true;
+            importBtn.innerHTML = '<span class="loading"></span> Importing...';
+
+            try {
+                // Read the JSON file
+                const reader = new FileReader();
+                reader.onload = async (event) => {
+                    try {
+                        const jsonData = JSON.parse(event.target.result);
+
+                        // Send to import endpoint
+                        const response = await fetch('/api/embedding/import-json', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ json_data: jsonData })
+                        });
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            documentsLoaded = true;
+                            questionInput.disabled = false;
+                            askBtn.disabled = false;
+
+                            // Clear welcome message
+                            const welcomeMsg = chatMessages.querySelector('.welcome-message');
+                            if (welcomeMsg) {
+                                chatMessages.innerHTML = '';
+                            }
+
+                            // Add success message to chat
+                            addMessage('system', `✅ Imported PowerPoint: ${result.deck_name} (${result.slides_imported} slides, ${result.chunks_created} chunks)`);
+
+                            // Add to file list
+                            const fileListDiv = document.getElementById('fileList');
+                            const pptItem = document.createElement('div');
+                            pptItem.className = 'file-item';
+                            pptItem.innerHTML = `<span>📊 ${result.deck_name} (PPT JSON)</span>`;
+                            fileListDiv.appendChild(pptItem);
+
+                            showStatus(`✅ Successfully imported ${result.deck_name}`, 'success');
+
+                            // Reset JSON selection
+                            selectedJsonFile = null;
+                            document.getElementById('jsonFileName').textContent = '';
+                            document.getElementById('jsonFileInput').value = '';
+                        } else {
+                            throw new Error(result.error || 'Import failed');
+                        }
+                    } catch (error) {
+                        showStatus('❌ Error: ' + error.message, 'error');
+                    } finally {
+                        importBtn.disabled = false;
+                        importBtn.innerHTML = 'Import JSON to Embedding';
+                    }
+                };
+
+                reader.readAsText(selectedJsonFile);
+
+            } catch (error) {
+                showStatus('❌ Error reading file: ' + error.message, 'error');
+                importBtn.disabled = false;
+                importBtn.innerHTML = 'Import JSON to Embedding';
+            }
+        });
     </script>
 
 </body>
