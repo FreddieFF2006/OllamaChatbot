@@ -12,26 +12,23 @@
         }
 
         :root {
-            --navy-blue: #1e3a5f;
-            --dark-navy: #152a45;
-            --light-navy: #2d5a8c;
-            --accent-blue: #4a9eff;
-            --bg-gray: #f7f9fc;
-            --border-gray: #e5e7eb;
+            --primary-purple: #8b5cf6;
+            --dark-purple: #7c3aed;
+            --light-purple: #a78bfa;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --bg-light: #faf5ff;
+            --border-purple: #ddd6fe;
             --text-dark: #1f2937;
-            
-            
-            
-            
-            
-            
-            
             --text-light: #6b7280;
+            --success: #10b981;
+            --error: #ef4444;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--bg-gray);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -39,18 +36,18 @@
         }
 
         .header {
-            background: white;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
             padding: 1rem 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-gray);
+            border-bottom: none;
         }
 
         .header h1 {
             font-size: 1.25rem;
-            color: var(--text-dark);
+            color: white;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -58,21 +55,23 @@
         }
 
         .back-button {
-            background: var(--navy-blue);
+            background: rgba(255, 255, 255, 0.2);
             color: white;
-            border: 1px solid var(--navy-blue);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             padding: 0.5rem 1rem;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.875rem;
             text-decoration: none;
-            transition: background 0.2s;
+            transition: all 0.2s;
             font-weight: 500;
+            backdrop-filter: blur(10px);
         }
 
         .back-button:hover {
-            background: var(--dark-navy);
-            border-color: var(--dark-navy);
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
         }
 
         .container {
@@ -87,31 +86,33 @@
 
         .upload-section {
             flex: 0 0 320px;
-            background: white;
-            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             height: fit-content;
-            border: 1px solid var(--border-gray);
+            border: 1px solid var(--border-purple);
         }
 
         .chat-section {
             flex: 1;
-            background: white;
-            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
             padding: 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             max-height: calc(100vh - 200px);
-            border: 1px solid var(--border-gray);
+            border: 1px solid var(--border-purple);
         }
 
         .section-title {
             font-size: 1.125rem;
             font-weight: 500;
             margin-bottom: 1.25rem;
-            color: var(--text-dark);
+            color: var(--primary-purple);
         }
 
         .sidebar-title {
@@ -135,7 +136,8 @@
 
         .model-select:focus {
             outline: none;
-            border-color: var(--navy-blue);
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
         .upload-area {
@@ -197,15 +199,17 @@
         }
 
         .btn-primary {
-            background: var(--navy-blue);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--accent-pink) 100%);
             color: white;
             margin-bottom: 0.5rem;
-            border: 1px solid var(--navy-blue);
+            border: none;
+            box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
         }
 
         .btn-primary:hover {
-            background: var(--dark-navy);
-            border-color: var(--dark-navy);
+            background: linear-gradient(135deg, var(--dark-purple) 0%, #db2777 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
         }
 
         .btn-primary:disabled {
@@ -216,14 +220,15 @@
         }
 
         .btn-secondary {
-            background: white;
-            color: var(--text-dark);
-            border: 1px solid var(--border-gray);
+            background: var(--bg-light);
+            color: var(--primary-purple);
+            border: 1px solid var(--border-purple);
         }
 
         .btn-secondary:hover {
-            background: var(--bg-gray);
-            border-color: var(--secondary);
+            background: var(--light-purple);
+            color: white;
+            border-color: var(--light-purple);
         }
 
         .status {
@@ -366,9 +371,9 @@
         }
 
         .message.user .message-content {
-            background: var(--navy-blue);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--accent-pink) 100%);
             color: white;
-            border-color: var(--navy-blue);
+            border-color: transparent;
         }
 
         .sources-section {
@@ -449,24 +454,27 @@
 
         .input-area input:focus {
             outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
         .input-area button {
             padding: 0.75rem 1.5rem;
-            background: var(--navy-blue);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--accent-pink) 100%);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
         }
 
         .input-area button:hover:not(:disabled) {
-            background: var(--dark-navy);
+            background: linear-gradient(135deg, var(--dark-purple) 0%, #db2777 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
         }
 
         .input-area button:disabled {
@@ -478,8 +486,8 @@
             display: inline-block;
             width: 1rem;
             height: 1rem;
-            border: 2px solid var(--border-gray);
-            border-top: 2px solid var(--navy-blue);
+            border: 2px solid var(--border-purple);
+            border-top: 2px solid var(--primary-purple);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -498,7 +506,7 @@
         .welcome-message h2 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--navy-blue);
+            color: var(--primary-purple);
         }
 
         .config-info {
