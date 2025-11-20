@@ -479,7 +479,7 @@ class AIDocumentChatbot:
             context += chunk['text'] + "\n"
         
         # Create prompt
-        system_prompt = """You are a helpful AI assistant that answers questions based on the provided document context. 
+        system_prompt = """You are a helpful AI assistant that answers questions based on the provided document context.
 
 IMPORTANT FORMATTING RULES:
 - Always cite which source and page number you're referring to when answering
@@ -488,6 +488,8 @@ IMPORTANT FORMATTING RULES:
 - Use bullet points or numbered lists for multiple data points
 - Add line breaks between different pieces of information
 - If the answer cannot be found in the provided context, say so clearly
+- Do NOT add summary sections or concluding statements like "In summary", "To summarize", "In conclusion", etc.
+- Just provide the requested information with citations and stop
 
 EXAMPLE OF GOOD FORMATTING:
 Employee data appears on the following pages:
@@ -495,7 +497,7 @@ Employee data appears on the following pages:
 - Page 28 - Training participation: 94-95%
 - Page 34 - International deployment: 960 employees
 - Page 185 - Contract employees: 93-114 persons"""
-        
+
         user_prompt = f"""Context from documents:
 {context}
 
@@ -506,6 +508,8 @@ IMPORTANT INSTRUCTIONS:
 - List EVERY unique page number where the information appears
 - Do not miss any pages from the sources provided
 - Be comprehensive and thorough
+- Do NOT add "In summary" or any concluding statements - just provide the data requested
+- Stop immediately after providing the last piece of information
 
 Please provide a detailed answer based on the context above. Cite your sources with file names and page numbers."""
         
