@@ -56,6 +56,27 @@
             align-items: center;
         }
 
+        .ppt-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .ppt-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
         .embedding-button {
             background: var(--accent-green);
             color: white;
@@ -364,6 +385,9 @@
                 <span class="status-dot" id="statusDot"></span>
                 <span id="statusText">Connecting...</span>
             </div>
+            <a href="http://localhost:5001" target="_blank" class="ppt-button">
+                📊 PowerPoint Extraction
+            </a>
             <a href="/embedding" class="embedding-button">
                 📚 Document Embedding
             </a>
