@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerPoint Extraction - AI Chatbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-blue: #1e3a5f;
+            --dark-navy: #152a45;
+            --light-navy: #2d5a8c;
+            --accent-blue: #4a9eff;
+            --bg-gray: #f7f9fc;
+            --border-gray: #e5e7eb;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .back-button {
+            background: var(--navy-blue);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+
+        .back-button:hover {
+            background: var(--dark-navy);
+        }
+
+        .iframe-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 70px);
+            border: none;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .error-message {
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .error-message h2 {
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+
+        .error-message p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            📊 PowerPoint Extraction Tool
+        </h1>
+        <a href="/" class="back-button">← Back to Chat</a>
+    </div>
+
+    <div class="iframe-container">
+        <iframe src="http://localhost:5001" id="pptFrame" onload="checkFrameLoad()"></iframe>
+    </div>
+
+    <script>
+        function checkFrameLoad() {
+            // Optional: Add error handling if needed
+            console.log('PPT Extraction service loaded');
+        }
+
+        // Handle iframe errors
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IFRAME') {
+                const container = document.querySelector('.iframe-container');
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h2>⚠️ Unable to Connect</h2>
+                        <p>The PowerPoint Extraction service at <strong>localhost:5001</strong> is not responding.</p>
+                        <p>Please make sure the pptx2description service is running.</p>
+                        <br>
+                        <a href="/" class="back-button">← Back to Chat</a>
+                    </div>
+                `;
+            }
+        }, true);
+    </script>
+</body>
+</html>

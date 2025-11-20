@@ -282,6 +282,11 @@ def embedding():
         return "Embedding feature not available. Please install required dependencies.", 503
     return render_template('embedding.html')
 
+@app.route('/ppt-extraction')
+def ppt_extraction():
+    """Render the PowerPoint extraction wrapper page"""
+    return render_template('ppt_extraction.html')
+
 @app.route('/api/models', methods=['GET'])
 def get_models():
     """Get all available models from Ollama, OpenAI, and Anthropic"""
