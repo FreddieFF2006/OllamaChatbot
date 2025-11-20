@@ -269,26 +269,50 @@ class AIDocumentChatbot:
     def add_documents(self, file_paths: List[str]):
         """
         Process and add multiple documents to the vector database.
-        
+
         Args:
             file_paths: List of paths to documents
         """
         print(f"\nProcessing {len(file_paths)} document(s)...")
-        
+
         all_points = []
-        
+
         for file_path in tqdm(file_paths, desc="Loading files", unit="file"):
-            
+
             # Extract and chunk text
             chunks = self.extract_text_from_file(file_path)
-            
+
             # Generate embeddings for all chunks
             texts = [chunk['text'] for chunk in chunks]
 
             print(f" {file_path}: {len(chunks)} chunks, generating embeddings...")
-            
+
             if self.use_jina:
-                embeddings = self._get_jina_embeddings_with_progress(texts)
+                try:
+                    embeddings = self._get_jina_embeddings_with_progress(texts)
+                except Exception as e:
+                    print(f"⚠️  JinaAI failed: {e}, falling back to local model")
+                    self.use_jina = False
+                    # Recreate collection with correct dimensions
+                    self.embedding_dim = self.embedding_model.get_sentence_embedding_dimension()
+                    self.qdrant_client.delete_collection(self.collection_name)
+                    self.qdrant_client.create_collection(
+                        collection_name=self.collection_name,
+                        vectors_config=VectorParams(
+                            size=self.embedding_dim,
+                            distance=Distance.COSINE
+                        )
+                    )
+                    print(f"✓ Recreated collection with {self.embedding_dim} dimensions")
+                    embeddings = []
+                    batch_size = 32
+                    for i in tqdm(range(0, len(texts), batch_size),
+                            desc=f" Embedding",
+                            unit="batch",
+                            leave=False):
+                        batch = texts[i:i + batch_size]
+                        batch_embeddings = self.embedding_model.encode(batch, show_progress_bar=False)
+                        embeddings.extend(batch_embeddings)
             else:
                 embeddings = []
                 batch_size = 32
