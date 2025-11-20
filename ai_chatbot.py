@@ -34,20 +34,22 @@ class AIDocumentChatbot:
         openai.api_key = openai_api_key
         self.openai_client = openai.OpenAI(api_key=openai_api_key)
         
-        # Initialize embedding model (AllMiniLM)
-        print("Loading JinaAI embedding model...")
+        # Initialize embedding model
+        print("Loading embedding model...")
         import requests
         self.jina_api_key = os.getenv("JINA_API_KEY")
-        self.use_jina = True if self.jina_api_key else False
 
-        if self.use_jina:
+        # Always load local model as fallback
+        self.embedding_model = SentenceTransformer(config.EMBEDDING_MODEL)
+
+        if self.jina_api_key:
+            self.use_jina = True
             self.embedding_dim = 768
-            print("Using JinaAI embeddings")
+            print("Using JinaAI embeddings (with local fallback)")
         else:
-            #Fallback to local model
-            self.embedding_model = SentenceTransformer(config.EMBEDDING_MODEL)
+            self.use_jina = False
             self.embedding_dim = self.embedding_model.get_sentence_embedding_dimension()
-            print(f"Using {config.EMBEDDING_MODEL}")
+            print(f"Using {config.EMBEDDING_MODEL} (dimension: {self.embedding_dim})")
         
         # Initialize Cohere model
         print("Loading Cohere reranker...")
