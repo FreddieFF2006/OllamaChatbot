@@ -21,6 +21,9 @@ app.secret_key = secrets.token_hex(16)
 # PPT Extraction Service configuration (for Docker: set to http://pptx2description:5001)
 PPT_SERVICE_URL = os.environ.get('PPT_SERVICE_URL', 'http://localhost:5001')
 
+# LibreOffice Converter Service (used by pptx2description service)
+LIBREOFFICE_CONVERTER_URL = os.environ.get('LIBREOFFICE_CONVERTER_URL', 'http://libreoffice-converter:2002')
+
 # Ollama API configuration
 OLLAMA_BASE_URL = os.environ.get('OLLAMA_BASE_URL', 'http://localhost:11434')
 
@@ -835,5 +838,6 @@ if __name__ == '__main__':
     print(f"Anthropic Available: {ANTHROPIC_AVAILABLE}")
     print(f"Embedding Available: {EMBEDDING_AVAILABLE}")
     print(f"PPT Service URL: {PPT_SERVICE_URL}")
+    print(f"LibreOffice Converter URL: {LIBREOFFICE_CONVERTER_URL}")
     print("=" * 60)
     app.run(debug=True, host='0.0.0.0', port=5000)
