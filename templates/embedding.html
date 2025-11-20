@@ -12,22 +12,21 @@
         }
 
         :root {
-            /* Claude-inspired dark theme */
-            --primary: #cc7a4a;
-            --primary-hover: #b36938;
-            --primary-light: #e08d5a;
-            --secondary: #9a6239;
-            --bg-primary: #2d2d2d;
-            --bg-secondary: #1e1e1e;
-            --bg-tertiary: #252525;
-            --bg-hover: #333333;
-            --border: #3d3d3d;
-            --border-light: #353535;
-            --text-primary: #ececec;
-            --text-secondary: #b8b8b8;
-            --text-tertiary: #8a8a8a;
-            --success: #4ade80;
-            --error: #f87171;
+            --primary: #2f2f2f;
+            --primary-hover: #1a1a1a;
+            --secondary: #666666;
+            --accent: #ab7c5f;
+            --accent-hover: #8b6850;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f8f8;
+            --bg-tertiary: #fafafa;
+            --border: #e5e5e5;
+            --border-light: #f0f0f0;
+            --text-primary: #2f2f2f;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --success: #16a34a;
+            --error: #dc2626;
         }
 
         body {
@@ -176,14 +175,14 @@
         }
 
         .file-item {
-            background: var(--bg-tertiary);
+            background: var(--bg-gray);
             padding: 0.75rem;
             border-radius: 6px;
             margin-bottom: 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-gray);
         }
 
         .btn {
@@ -236,15 +235,15 @@
         }
 
         .status.success {
-            background: rgba(74, 222, 128, 0.1);
+            background: #f0fdf4;
             color: var(--success);
-            border-color: var(--success);
+            border-color: #86efac;
         }
 
         .status.error {
-            background: rgba(248, 113, 113, 0.1);
+            background: #fef2f2;
             color: var(--error);
-            border-color: var(--error);
+            border-color: #fca5a5;
         }
 
         .status.info {
@@ -341,49 +340,49 @@
 
         .message-content table th,
         .message-content table td {
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-gray);
             padding: 0.5rem;
             text-align: left;
         }
 
         .message-content table th {
-            background: var(--bg-tertiary);
+            background: var(--bg-gray);
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--navy-blue);
         }
 
         .message-content blockquote {
-            border-left: 4px solid var(--primary);
+            border-left: 4px solid var(--accent-blue);
             padding-left: 1rem;
             margin: 1rem 0;
-            color: var(--text-secondary);
+            color: var(--text-light);
             font-style: italic;
         }
 
         .message-content hr {
             border: none;
-            border-top: 2px solid var(--border);
+            border-top: 2px solid var(--border-gray);
             margin: 1.5rem 0;
         }
 
         .message.user .message-content {
-            background: var(--primary);
+            background: var(--navy-blue);
             color: white;
-            border-color: var(--primary);
+            border-color: var(--navy-blue);
         }
 
         .sources-section {
             margin-top: 1rem;
-            background: var(--bg-tertiary);
+            background: var(--bg-gray);
             border-radius: 6px;
             font-size: 0.9rem;
             overflow: hidden;
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-gray);
         }
 
         .sources-header {
             padding: 0.75rem 1rem;
-            background: var(--primary);
+            background: var(--navy-blue);
             color: white;
             cursor: pointer;
             display: flex;
@@ -394,7 +393,7 @@
         }
 
         .sources-header:hover {
-            background: var(--primary-hover);
+            background: var(--dark-navy);
         }
 
         .sources-header strong {
@@ -415,7 +414,7 @@
             overflow: hidden;
             transition: max-height 0.3s ease-out;
             padding: 1rem;
-            background: var(--bg-primary);
+            background: white;
         }
 
         .sources-content.collapsed {
@@ -426,10 +425,11 @@
         .source-item {
             padding: 0.75rem;
             margin: 0.5rem 0;
-            background: var(--bg-tertiary);
+            background: var(--bg-gray);
             border-radius: 6px;
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--primary);
+            border-left: 3px solid var(--accent-blue);
+            border: 1px solid var(--border-gray);
+            border-left: 3px solid var(--accent-blue);
         }
 
         .input-area {
@@ -440,23 +440,22 @@
         .input-area input {
             flex: 1;
             padding: 0.75rem 1rem;
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-gray);
             border-radius: 6px;
             font-size: 0.95rem;
             transition: all 0.2s;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
+            background: white;
         }
 
         .input-area input:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(204, 122, 74, 0.1);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
         }
 
         .input-area button {
             padding: 0.75rem 1.5rem;
-            background: var(--primary);
+            background: var(--navy-blue);
             color: white;
             border: none;
             border-radius: 6px;
@@ -467,12 +466,11 @@
         }
 
         .input-area button:hover:not(:disabled) {
-            background: var(--primary-hover);
+            background: var(--dark-navy);
         }
 
         .input-area button:disabled {
-            background: var(--border);
-            color: var(--text-tertiary);
+            background: #d1d5db;
             cursor: not-allowed;
         }
 
@@ -480,8 +478,8 @@
             display: inline-block;
             width: 1rem;
             height: 1rem;
-            border: 2px solid var(--border);
-            border-top: 2px solid var(--primary);
+            border: 2px solid var(--border-gray);
+            border-top: 2px solid var(--navy-blue);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -494,27 +492,27 @@
         .welcome-message {
             text-align: center;
             padding: 3rem 2rem;
-            color: var(--text-secondary);
+            color: var(--text-light);
         }
 
         .welcome-message h2 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--text-primary);
+            color: var(--navy-blue);
         }
 
         .config-info {
-            background: var(--bg-tertiary);
+            background: var(--bg-gray);
             padding: 1rem;
             border-radius: 6px;
             margin-top: 1rem;
             font-size: 0.85rem;
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
+            color: var(--text-light);
+            border: 1px solid var(--border-gray);
         }
 
         .config-info strong {
-            color: var(--text-primary);
+            color: var(--navy-blue);
         }
     </style>
 </head>
@@ -534,7 +532,7 @@
             <div class="upload-area" id="uploadArea">
                 <div class="upload-icon">📄</div>
                 <p><strong>Click to upload</strong> or drag and drop</p>
-                <p style="font-size: 0.9rem; color: var(--text-tertiary); margin-top: 0.5rem;">
+                <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
                     PDF, DOCX, TXT files
                 </p>
             </div>
@@ -544,16 +542,16 @@
             <div class="file-list" id="fileList"></div>
 
             <!-- PowerPoint JSON Import Section -->
-            <div style="margin: 1.5rem 0; padding-top: 1.5rem; border-top: 2px solid var(--border);">
+            <div style="margin: 1.5rem 0; padding-top: 1.5rem; border-top: 2px solid var(--border-gray);">
                 <h3 class="sidebar-title">📊 Import PowerPoint JSON</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">
                     Upload JSON files from the PowerPoint Extraction tool
                 </p>
                 <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
                 <button class="btn btn-secondary" id="jsonUploadBtn" onclick="document.getElementById('jsonFileInput').click()">
                     Choose JSON File
                 </button>
-                <div id="jsonFileName" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-primary);"></div>
+                <div id="jsonFileName" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-dark);"></div>
                 <button class="btn btn-primary" id="importJsonBtn" disabled style="margin-top: 0.5rem;">
                     Import JSON to Embedding
                 </button>
