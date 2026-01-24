@@ -34,20 +34,22 @@ class AIDocumentChatbot:
         openai.api_key = openai_api_key
         self.openai_client = openai.OpenAI(api_key=openai_api_key)
         
-        # Initialize embedding model (AllMiniLM)
-        print("Loading JinaAI embedding model...")
+        # Initialize embedding model
+        print("Loading embedding model...")
         import requests
         self.jina_api_key = os.getenv("JINA_API_KEY")
-        self.use_jina = True if self.jina_api_key else False
 
-        if self.use_jina:
+        # Always load local model as fallback
+        self.embedding_model = SentenceTransformer(config.EMBEDDING_MODEL)
+
+        if self.jina_api_key:
+            self.use_jina = True
             self.embedding_dim = 768
-            print("Using JinaAI embeddings")
+            print("Using JinaAI embeddings (with local fallback)")
         else:
-            #Fallback to local model
-            self.embedding_model = SentenceTransformer(config.EMBEDDING_MODEL)
+            self.use_jina = False
             self.embedding_dim = self.embedding_model.get_sentence_embedding_dimension()
-            print(f"Using {config.EMBEDDING_MODEL}")
+            print(f"Using {config.EMBEDDING_MODEL} (dimension: {self.embedding_dim})")
         
         # Initialize Cohere model
         print("Loading Cohere reranker...")
@@ -267,26 +269,50 @@ class AIDocumentChatbot:
     def add_documents(self, file_paths: List[str]):
         """
         Process and add multiple documents to the vector database.
-        
+
         Args:
             file_paths: List of paths to documents
         """
         print(f"\nProcessing {len(file_paths)} document(s)...")
-        
+
         all_points = []
-        
+
         for file_path in tqdm(file_paths, desc="Loading files", unit="file"):
-            
+
             # Extract and chunk text
             chunks = self.extract_text_from_file(file_path)
-            
+
             # Generate embeddings for all chunks
             texts = [chunk['text'] for chunk in chunks]
 
             print(f" {file_path}: {len(chunks)} chunks, generating embeddings...")
-            
+
             if self.use_jina:
-                embeddings = self._get_jina_embeddings_with_progress(texts)
+                try:
+                    embeddings = self._get_jina_embeddings_with_progress(texts)
+                except Exception as e:
+                    print(f"⚠️  JinaAI failed: {e}, falling back to local model")
+                    self.use_jina = False
+                    # Recreate collection with correct dimensions
+                    self.embedding_dim = self.embedding_model.get_sentence_embedding_dimension()
+                    self.qdrant_client.delete_collection(self.collection_name)
+                    self.qdrant_client.create_collection(
+                        collection_name=self.collection_name,
+                        vectors_config=VectorParams(
+                            size=self.embedding_dim,
+                            distance=Distance.COSINE
+                        )
+                    )
+                    print(f"✓ Recreated collection with {self.embedding_dim} dimensions")
+                    embeddings = []
+                    batch_size = 32
+                    for i in tqdm(range(0, len(texts), batch_size),
+                            desc=f" Embedding",
+                            unit="batch",
+                            leave=False):
+                        batch = texts[i:i + batch_size]
+                        batch_embeddings = self.embedding_model.encode(batch, show_progress_bar=False)
+                        embeddings.extend(batch_embeddings)
             else:
                 embeddings = []
                 batch_size = 32
@@ -453,7 +479,7 @@ class AIDocumentChatbot:
             context += chunk['text'] + "\n"
         
         # Create prompt
-        system_prompt = """You are a helpful AI assistant that answers questions based on the provided document context. 
+        system_prompt = """You are a helpful AI assistant that answers questions based on the provided document context.
 
 IMPORTANT FORMATTING RULES:
 - Always cite which source and page number you're referring to when answering
@@ -462,6 +488,8 @@ IMPORTANT FORMATTING RULES:
 - Use bullet points or numbered lists for multiple data points
 - Add line breaks between different pieces of information
 - If the answer cannot be found in the provided context, say so clearly
+- Do NOT add summary sections or concluding statements like "In summary", "To summarize", "In conclusion", etc.
+- Just provide the requested information with citations and stop
 
 EXAMPLE OF GOOD FORMATTING:
 Employee data appears on the following pages:
@@ -469,7 +497,7 @@ Employee data appears on the following pages:
 - Page 28 - Training participation: 94-95%
 - Page 34 - International deployment: 960 employees
 - Page 185 - Contract employees: 93-114 persons"""
-        
+
         user_prompt = f"""Context from documents:
 {context}
 
@@ -480,6 +508,8 @@ IMPORTANT INSTRUCTIONS:
 - List EVERY unique page number where the information appears
 - Do not miss any pages from the sources provided
 - Be comprehensive and thorough
+- Do NOT add "In summary" or any concluding statements - just provide the data requested
+- Stop immediately after providing the last piece of information
 
 Please provide a detailed answer based on the context above. Cite your sources with file names and page numbers."""
         

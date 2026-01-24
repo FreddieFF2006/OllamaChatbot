@@ -17,7 +17,12 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
-PPT_SERVICE_URL = "http://localhost:5001"
+
+# PPT Extraction Service configuration (for Docker: set to http://pptx2description:5001)
+PPT_SERVICE_URL = os.environ.get('PPT_SERVICE_URL', 'http://localhost:5001')
+
+# LibreOffice Converter Service (used by pptx2description service)
+LIBREOFFICE_CONVERTER_URL = os.environ.get('LIBREOFFICE_CONVERTER_URL', 'http://libreoffice-converter:2002')
 
 # Ollama API configuration
 OLLAMA_BASE_URL = os.environ.get('OLLAMA_BASE_URL', 'http://localhost:11434')
@@ -277,6 +282,11 @@ def embedding():
         return "Embedding feature not available. Please install required dependencies.", 503
     return render_template('embedding.html')
 
+@app.route('/ppt-extraction')
+def ppt_extraction():
+    """Render the PowerPoint extraction wrapper page"""
+    return render_template('ppt_extraction.html')
+
 @app.route('/api/models', methods=['GET'])
 def get_models():
     """Get all available models from Ollama, OpenAI, and Anthropic"""
@@ -452,19 +462,25 @@ def upload_documents():
     
     if not files:
         return jsonify({"error": "No files selected"}), 400
-    
+
     try:
         chatbot = chatbot_instances[session_id]['chatbot']
         processed_files = []
-        
+        file_paths = []
+
+        # Save all files first
         for file in files:
             if file.filename:
-                # Save file temporarily and process
+                # Save file temporarily
                 file_path = f"/tmp/{file.filename}"
                 file.save(file_path)
-                chatbot.load_document(file_path)
+                file_paths.append(file_path)
                 processed_files.append(file.filename)
-        
+
+        # Process all documents at once
+        if file_paths:
+            chatbot.add_documents(file_paths)
+
         return jsonify({
             "success": True,
             "files": processed_files,
@@ -564,6 +580,9 @@ def check_ppt_service():
         response = requests.get(f"{PPT_SERVICE_URL}/health", timeout=5)
         if response.status_code == 200:
             data = response.json()
+            # Ensure port is included in service info
+            if 'port' not in data:
+                data['port'] = 5001
             return jsonify({
                 "available": True,
                 "service_info": data
@@ -830,5 +849,6 @@ if __name__ == '__main__':
     print(f"Anthropic Available: {ANTHROPIC_AVAILABLE}")
     print(f"Embedding Available: {EMBEDDING_AVAILABLE}")
     print(f"PPT Service URL: {PPT_SERVICE_URL}")
+    print(f"LibreOffice Converter URL: {LIBREOFFICE_CONVERTER_URL}")
     print("=" * 60)
     app.run(debug=True, host='0.0.0.0', port=5000)
